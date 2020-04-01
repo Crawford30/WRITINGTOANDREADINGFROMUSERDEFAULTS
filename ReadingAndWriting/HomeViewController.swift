@@ -25,6 +25,18 @@ class HomeViewController: UIViewController {
     
     @IBAction func logOutClicked(_ sender: UIBarButtonItem) {
         
+        UserDefaults.standard.removeObject(forKey: "email")
+        
+        //redirect to login
+        let vc = storyboard?.instantiateViewController(identifier: "LogIn") as? ViewController
+        
+        let navVC = UINavigationController(rootViewController: vc!)
+        
+        let shared = UIApplication.shared.delegate as? AppDelegate
+        
+        shared?.window?.rootViewController = navVC
+        shared?.window?.makeKeyAndVisible()
+        
         print("log out")
     }
     
