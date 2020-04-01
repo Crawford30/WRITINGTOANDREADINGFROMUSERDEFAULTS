@@ -65,12 +65,15 @@ class ViewController: UIViewController {
         
         if email == emailTextField.text! && password == passwordTextField.text! {
             
+            UserDefaults.standard.set(emailTextField.text, forKey: "email")
+            
             let vc = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
             navigationController?.pushViewController(vc!, animated: true)
             
             
             
         } else {
+            
             
             //shows an alert if not equal
             let alert = UIAlertController(title: "Alert", message: "Email or password is not matching", preferredStyle: .alert)

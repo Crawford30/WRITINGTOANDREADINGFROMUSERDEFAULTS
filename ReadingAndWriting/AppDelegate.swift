@@ -11,11 +11,27 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        check()
         return true
+    }
+    
+    func check() {
+        
+        if UserDefaults.standard.value(forKey: "email") != nil {
+            let vc =  UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "LogIn")
+            
+            let navVC = UINavigationController(rootViewController: vc)
+            
+            let shared = UIApplication.shared.delegate as? AppDelegate
+            
+            shared?.window?.rootViewController = navVC
+            shared?.window?.makeKeyAndVisible()
+        }
+        
     }
 
     // MARK: UISceneSession Lifecycle

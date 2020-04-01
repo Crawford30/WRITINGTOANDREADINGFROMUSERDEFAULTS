@@ -16,7 +16,19 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+////Hiding the back button
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(), style: .plain, target: self, action: nil)
+//    }
+    
+    
+    @IBAction func logOutClicked(_ sender: UIBarButtonItem) {
+        
+        print("log out")
+    }
+    
+    
     /*
     // MARK: - Navigation
 
