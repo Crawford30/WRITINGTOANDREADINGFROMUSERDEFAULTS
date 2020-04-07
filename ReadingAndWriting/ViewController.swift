@@ -9,31 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
      let defaults = UserDefaults.standard
     
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     @IBOutlet weak var signInBtn: UIButton!
     
-    let email = "test@gmail.com"
+    @IBOutlet weak var userTypeSegmentOutlet: UISegmentedControl!
+    
+    
+    
+    let email    = "test@gmail.com"
     let password = "12345678"
     
     
-    
-    
-    
-    
-    
-    
     override func viewDidLoad() {
+    
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //writting
-        
-        
         
     }
     
@@ -66,37 +61,37 @@ class ViewController: UIViewController {
         if email == emailTextField.text! && password == passwordTextField.text! {
             
             UserDefaults.standard.set(emailTextField.text, forKey: "email")
+
+            //------------------------------------------------------------------------
             
+            var localUserType: String = "provider"
+            
+            if userTypeSegmentOutlet.selectedSegmentIndex == 1 {
+                
+                localUserType = "requester"
+                
+            }
+            
+            UserDefaults.standard.set( localUserType, forKey: "isProvider")
+
+            //------------------------------------------------------------------------
+
             let vc = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
             navigationController?.pushViewController(vc!, animated: true)
             
-            
-            
-        } else {
-            
+        } else {    //-----------------------------------------------------------------------------------------
             
             //shows an alert if not equal
             let alert = UIAlertController(title: "Alert", message: "Email or password is not matching", preferredStyle: .alert)
             
-            
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
             
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
             
         }
+        
     }
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
     
 
 }
